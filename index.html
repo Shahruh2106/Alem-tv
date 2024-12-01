@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Älem TV - Video va Filmlar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .video {
+            width: 30%;
+            margin: 10px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 200px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #registration-form input {
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        #registration-form button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #registration-form button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Älem TV</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Bosh sahifa</a></li>
+                <li><a href="#movies">Filmlar</a></li>
+                <li><a href="#videos">Videolar</a></li>
+                <li><a href="#contact">Aloqa</a></li>
+                <li><a href="#register">Ro'yxatdan o'tish</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Eng so'nggi filmlar</h2>
+        <div class="video-container" id="video-container">
+            <!-- Video va filmlar dinamik ravishda kiritiladi -->
+        </div>
+    </section>
+
+    <section id="movies">
+        <h2>Filmlar</h2>
+        <div class="video-container" id="movie-container">
+            <!-- Filmlar bo'limi uchun joy -->
+        </div>
+    </section>
+
+    <section id="videos">
+        <h2>Videolar</h2>
+        <div class="video-container" id="video-list">
+            <!-- Videolar bo'limi uchun joy -->
+        </div>
+    </section>
+
+    <section id="register">
+        <h2>Ro'yxatdan o'tish</h2>
+        <form id="registration-form">
+            <input type="text" id="username" placeholder="Foydalanuvchi nomi" required>
+            <input type="password" id="password" placeholder="Parol" required>
+            <button type="submit">Ro'yxatdan o'tish</button>
+        </form>
+    </section>
+
+    <footer id="contact">
+        <p>&copy; 2024 Älem TV - Barcha huquqlar himoyalangan</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const videos = [
+                { title: "Film 1", iframe: "https://www.youtube.com/embed/example1", rating: 4.5 },
+                { title: "Film 2", iframe: "https://www.youtube.com/embed/example2", rating: 3.5 },
+                { title: "Film 3", iframe: "https://www.youtube.com/embed/example3", rating: 5 },
+            ];
+
+            const videoContainer = document.getElementById("video-container");
+
+            videos.forEach(video => {
+                const videoDiv = document.createElement("div");
+                videoDiv.classList.add("video");
+                videoDiv.innerHTML = `
+                    <iframe src="${video.iframe}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p>${video.title}</p>
+                    <p>Reyting: ${video.rating}⭐</p>
+                `;
+                videoContainer.appendChild(videoDiv);
+            });
+
+            const registrationForm = document.getElementById("registration-form");
+            registrationForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+                
+                if (username && password) {
+                    alert("Siz muvaffaqiyatli ro'yxatdan o'tdingiz!");
+                } else {
+                    alert("Iltimos, barcha maydonlarni to'ldiring!");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
